@@ -1,6 +1,6 @@
 "use client";
 
-import { Globe } from "lucide-react";
+import { Cloud, Globe, Shield } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import {
@@ -83,135 +83,45 @@ type Course = {
 
 const COURSES: Course[] = [
   {
-     id: 1,
-  category: "IT Support",
-  title: "Install & Troubleshoot PC Hardware",
+  id: 1,
+  category: "IT Systems & Networking",
+  title: "Certified IT Systems & Network Professional (CISNP)",
   description:
-    "Learn PC hardware installation, troubleshooting, cooling, peripherals, and complete computer assembly from the ground up.",
-  instructor: "Desktop Support Expert",
+    "Build professional skills in computer hardware, networking, operating systems, Windows 10/11, Kali Linux, CCNA, and Microsoft Server.",
+  instructor: "VTech Academy IT Systems Expert",
   rating: 4.9,
   students: "2.8K",
   duration: "8 weeks",
   price: "$149",
   icon: Cpu,
+},
 
-  },
-  {
-     id: 2,
-  category: "Operating Systems",
-  title: "Configure & Troubleshoot OS",
+{
+  id: 2,
+  category: "Cloud Computing",
+  title: "TRI Cloud Engineer Certification (TCEC)",
   description:
-    "Master Windows and Linux operating systems, installation, configuration, troubleshooting, security, user management, networking, and system maintenance.",
-  instructor: "OS Support Expert",
+    "Master the fundamentals of the three major cloud platforms: AWS, Microsoft Azure, and Google Cloud Platform (GCP), and build practical cloud engineering skills.",
+  instructor: "VTech Academy Cloud Expert",
   rating: 4.9,
   students: "2.5K",
-  duration: "8 weeks",
-  price: "$149",
-  icon: Monitor,
-  },
-  {
-    id: 3,
-  category: "Networking",
-  title: "Network Essentials",
+  duration: "10 weeks",
+  price: "$199",
+  icon: Cloud,
+},
+
+{
+  id: 3,
+  category: "Cyber Security",
+  title: "Certified Network Security & Ethical Hacking Professional (CNSEH)",
   description:
-    "Learn computer networking fundamentals, network devices, IP addressing, subnetting, LAN configuration, wireless networking, troubleshooting, and network security.",
-  instructor: "Network Engineering Expert",
-  rating: 4.9,
-  students: "2.6K",
-  duration: "8 weeks",
-  price: "$149",
-  icon: Globe,
-  },
-  {
-    id: 4,
-  category: "Microsoft 365",
-  title: "Microsoft 365 & Outlook",
-  description:
-    "Master Microsoft Word, Excel, PowerPoint, Outlook, Teams, SharePoint, OneDrive, and essential Microsoft 365 administration and troubleshooting.",
-  instructor: "Microsoft 365 Expert",
-  rating: 4.8,
-  students: "2.4K",
-  duration: "8 weeks",
-  price: "$149",
-  icon: Monitor,
-  },
-  {
-    id: 5,
-  category: "Server Administration",
-  title: "Microsoft Server Administration",
-  description:
-    "Master Windows Server 2022 administration, Active Directory, network services, Group Policy, storage, virtualization, security, backup, and server troubleshooting.",
-  instructor: "Windows Server Administrator",
+    "Learn network security, Check Point Firewall, Fortigate Firewall, ethical hacking, defense, detection, and offensive security concepts.",
+  instructor: "VTech Academy Cyber Security Expert",
   rating: 4.9,
   students: "2.3K",
-  duration: "8 weeks",
-  price: "$149",
-  icon: Monitor,
-  },
-  {
-    id: 6,
-  category: "Networking",
-  title: "CCNA — Routing & Switching",
-  description:
-    "Build strong networking skills with Cisco routing, switching, IP addressing, network services, infrastructure security, WAN technologies, and troubleshooting.",
-  instructor: "Cisco Network Engineer",
-  rating: 4.9,
-  students: "2.2K",
-  duration: "8 weeks",
-  price: "$149",
-  icon: Globe,
-  },
-  {
-  id: 7,
-  category: "Linux Administration",
-  title: "Red Hat Linux System Administration",
-  description:
-    "Master Red Hat Linux system administration, command-line operations, users and groups, permissions, processes, services, networking, security, and system management.",
-  instructor: "Red Hat Linux Administrator",
-  rating: 4.9,
-  students: "2.1K",
-  duration: "8 weeks",
-  price: "$149",
-  icon: Monitor,
-  },
-  {
-  id: 8,
-  category: "IT Support",
-  title: "Windows System Administration",
-  description:
-    "Learn Windows installation, user management, system configuration, security, troubleshooting, updates, and administration from the ground up.",
-  instructor: "Windows Administration Expert",
-  rating: 4.8,
-  students: "2.4K",
-  duration: "9 hours",
-  price: "$159",
-  icon: Monitor,
-},
-{
-  id: 9,
-  category: "IT Support",
-  title: "Networking Fundamentals & Troubleshooting",
-  description:
-    "Master networking fundamentals including IP addresses, DNS, DHCP, routers, switches, Wi-Fi, network security, and practical troubleshooting.",
-  instructor: "Network Support Specialist",
-  rating: 4.9,
-  students: "3.1K",
-  duration: "10 hours",
-  price: "$169",
-  icon: Monitor,
-},
-{
-  id: 10,
-  category: "IT Support",
-  title: "Cybersecurity Fundamentals for IT Support",
-  description:
-    "Understand cybersecurity fundamentals, common threats, password security, malware protection, phishing prevention, access control, and secure IT practices.",
-  instructor: "Cybersecurity Professional",
-  rating: 4.9,
-  students: "3.6K",
-  duration: "11 hours",
-  price: "$179",
-  icon: Monitor,
+  duration: "10 weeks",
+  price: "$199",
+  icon: Shield,
 },
 
 ];
@@ -247,14 +157,15 @@ const WHY_CHOOSE_US = [
 
 const TESTIMONIALS = [
   {
-    name: "Priya Nair",
-    role: "Frontend Developer",
+    name: "Gavesh Nishad",
+    role: "Desktop Support Engineer",
     quote:
-      "The Full Stack course completely changed my career path. The projects felt real, and the instructors actually cared about my progress.",
-    initials: "PN",
+      "My experience with the Desktop Support Engineer course has been excellent The instructor is supportive and explains concepts clearly, with a strong focus on practical, hands-on learning. The detailed guidance on devices and systems like routers and printers has been very valuable.",
+    initials: "GN",
+    photo: "/public/gavesh.jpeg",
   },
   {
-    name: "Arjun Desai",
+    name: "Sachin maske",
     role: "Data Analyst",
     quote:
       "I went from knowing almost nothing about data to landing a job as an analyst in six months. The structure of the course made all the difference.",
@@ -824,9 +735,11 @@ function TestimonialsSection() {
           <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
             Testimonials
           </span>
+
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
             What Our Students Say
           </h2>
+
           <p className="mt-4 text-base leading-relaxed text-slate-600">
             Real stories from learners who grew their skills and careers with
             us.
@@ -840,6 +753,7 @@ function TestimonialsSection() {
               className="flex flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/10"
             >
               <Quote className="h-6 w-6 text-blue-200" />
+
               <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">
                 &ldquo;{t.quote}&rdquo;
               </p>
@@ -854,13 +768,23 @@ function TestimonialsSection() {
               </div>
 
               <div className="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
-                  {t.initials}
-                </span>
+                {t.photo ? (
+                  <img
+                    src={t.photo}
+                    alt={t.name}
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+                    {t.initials}
+                  </span>
+                )}
+
                 <div>
                   <p className="text-sm font-bold leading-none text-slate-900">
                     {t.name}
                   </p>
+
                   <p className="mt-1 text-xs text-slate-500">{t.role}</p>
                 </div>
               </div>
@@ -998,25 +922,14 @@ function Footer() {
                 <GraduationCap className="h-5 w-5 text-white" />
               </span>
               <span className="text-lg font-bold text-white">
-                Learn<span className="text-blue-500">ify</span>
+                Stack X <span className="text-blue-500">Academy</span>
               </span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
               Practical, expert-led courses that help you build real skills
               and grow your career with confidence.
             </p>
-            {/* <div className="mt-5 flex items-center gap-3">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-slate-300 transition-colors hover:bg-blue-600 hover:text-white"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div> */}
+          
           </div>
 
           {/* Quick links */}
@@ -1059,15 +972,15 @@ function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-slate-400">
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                hello@learnify.com
+                stackxacademy@gmail.com
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                +1 (555) 123-4567
+                +91 6261885954
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                123 Learning Ave, San Francisco, CA
+                
               </li>
               <li className="flex items-start gap-3">
                 <Headphones className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
