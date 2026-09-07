@@ -2,6 +2,9 @@
 
 import { Cloud, Globe, Shield } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
+import Image from "next/image";
 import { Inter } from "next/font/google";
 import {
   Menu,
@@ -79,6 +82,8 @@ type Course = {
   duration: string;
   price: string;
   icon: typeof Code2;
+   link: string; //
+   image: string;
 };
 
 const COURSES: Course[] = [
@@ -94,6 +99,8 @@ const COURSES: Course[] = [
   duration: "8 weeks",
   price: "$149",
   icon: Cpu,
+  link: "/course1",
+  image: "/courses/it-networking.jpg",
 },
 
 {
@@ -108,6 +115,8 @@ const COURSES: Course[] = [
   duration: "10 weeks",
   price: "$199",
   icon: Cloud,
+  link: "/course2",
+  image: "/courses/cloud-computing.jpg",
 },
 
 {
@@ -122,6 +131,9 @@ const COURSES: Course[] = [
   duration: "10 weeks",
   price: "$199",
   icon: Shield,
+  link: "/course3",
+  image: "/courses/cyber-security.jpg",
+
 },
 
 ];
@@ -162,28 +174,31 @@ const TESTIMONIALS = [
     quote:
       "My experience with the Desktop Support Engineer course has been excellent The instructor is supportive and explains concepts clearly, with a strong focus on practical, hands-on learning. The detailed guidance on devices and systems like routers and printers has been very valuable.",
     initials: "GN",
-    photo: "/public/gavesh.jpeg",
+    photo: "gavesh.jpeg",
   },
   {
     name: "Sachin maske",
-    role: "Data Analyst",
+    role: "Desktop Support Engineer",
     quote:
-      "I went from knowing almost nothing about data to landing a job as an analyst in six months. The structure of the course made all the difference.",
+      "StackX Academy offers hands-on practical training in Desktop, Computer Hardware, and Networking. This equips students with technical skills and the confidence needed to establish a successful career in the industry",
     initials: "AD",
+    photo:"Sachin.jpeg"
   },
   {
-    name: "Meera Iyer",
-    role: "UI/UX Designer",
+    name: "Kartik Ram",
+    role: "Desktop Support Engineer",
     quote:
-      "Practical, well-paced, and genuinely engaging. I finally understood design systems after years of trying to learn on my own.",
-    initials: "MI",
+      "I'm Kartik Ram Sahu and I completed my Hardware and Networking course from StackX Academy",
+    initials: "KM",
+    photo:"Kartik.jpeg"
   },
   {
-    name: "Sahil Verma",
-    role: "ML Engineer",
+    name: "Devika chandrakar",
+    role: "Desktop Support Engineer",
     quote:
-      "The AI & ML course balances theory and practice perfectly. I built a portfolio I'm actually proud to show employers.",
-    initials: "SV",
+      "Honestly, I'm really satisfied with the training and support from StackX Academy. If anyone wants to start a career in Desktop Support and Networking, StackX Academy is definitely the place to go. Thanks so much to the entire StackX Academy team for such valuable experience and learning!.",
+    initials: "DC",
+    photo:"devika.jpeg"
   },
 ];
 
@@ -240,7 +255,8 @@ function Navbar() {
             src="/stack-x-logo.png"
             alt="Stack X Academy"
             className="h-full w-12 object-contain"
-           />
+          />
+
           <span className="text-lg font-bold tracking-tight text-slate-900">
             Stack X <span className="text-blue-600">Academy</span>
           </span>
@@ -260,14 +276,26 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
-        <a
-          href="#courses"
-          className="hidden items-center gap-1.5 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/25 transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30 lg:inline-flex"
-        >
-          Get Started
-          <ArrowRight className="h-4 w-4" />
-        </a>
+        {/* Desktop WhatsApp Button */}
+     <a
+  href="https://wa.me/916261885954"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat with Stack X Academy on WhatsApp"
+  className="group relative hidden h-11 items-center justify-center gap-2 overflow-hidden rounded-lg bg-green-500 px-6 text-sm font-semibold text-white shadow-lg shadow-green-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600 hover:shadow-xl hover:shadow-green-500/40 lg:inline-flex"
+>
+  {/* Animated shine */}
+  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+  {/* WhatsApp Icon */}
+  <FaWhatsapp className="relative h-5 w-5 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6" />
+
+  {/* Text */}
+  <span className="relative">WhatsApp</span>
+
+  {/* Pulse dot */}
+  <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+</a>
 
         {/* Mobile toggle */}
         <button
@@ -277,7 +305,11 @@ function Navbar() {
           onClick={() => setMobileOpen((v) => !v)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 lg:hidden"
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </button>
       </nav>
 
@@ -298,14 +330,26 @@ function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#courses"
-            onClick={() => setMobileOpen(false)}
-            className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-600/25"
-          >
-            Get Started
-            <ArrowRight className="h-4 w-4" />
-          </a>
+{/* Mobile WhatsApp */}
+<a
+  href="https://wa.me/916261885954"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => setMobileOpen(false)}
+  className="group relative mt-2 flex h-11 items-center justify-center gap-2 overflow-hidden rounded-lg bg-green-500 px-6 text-sm font-semibold text-white shadow-lg shadow-green-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600 hover:shadow-xl hover:shadow-green-500/40"
+>
+  {/* Animated shine */}
+  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+  {/* WhatsApp Icon */}
+  <FaWhatsapp className="relative h-5 w-5 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6" />
+
+  {/* Text */}
+  <span className="relative">WhatsApp</span>
+
+  {/* Pulse dot */}
+  <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+</a>
         </div>
       </div>
     </header>
@@ -628,12 +672,30 @@ function CourseCard({ course }: { course: Course }) {
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/10">
       {/* Image placeholder */}
-      <div className="relative flex h-40 items-center justify-center bg-gradient-to-br from-blue-600 to-sky-500">
-        <Icon className="h-14 w-14 text-white/90" strokeWidth={1.5} />
-        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-blue-700 backdrop-blur">
-          {course.category}
-        </span>
-      </div>
+    {/* Course Image */}
+<div className="group/image relative h-48 overflow-hidden">
+  <Image
+    src={course.image}
+    alt={course.title}
+    fill
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-110"
+    priority={course.id === 1}
+  />
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/10 to-transparent" />
+
+  {/* Category */}
+  <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold text-blue-700 shadow-sm backdrop-blur">
+    {course.category}
+  </span>
+
+  {/* Course Icon */}
+  <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/90 text-white shadow-lg backdrop-blur-sm">
+    <Icon className="h-5 w-5" strokeWidth={1.8} />
+  </div>
+</div>
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-600">
@@ -662,17 +724,15 @@ function CourseCard({ course }: { course: Course }) {
           </span>
         </div>
 
-        <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5">
-          <span className="text-xl font-extrabold text-slate-900">
-            {course.price}
-          </span>
-          <a
-            href="#"
-            className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition-colors hover:bg-blue-600 hover:text-white"
-          >
-            View Course
-            <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+        <div className="mt-6 flex items-center justify-center border-t border-slate-100 pt-5">
+         
+          <Link
+  href={course.link}
+  className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition-colors hover:bg-blue-600 hover:text-white"
+>
+  View Course
+  <ArrowRight className="h-3.5 w-3.5" />
+</Link>
         </div>
       </div>
     </div>
@@ -909,7 +969,6 @@ function CtaBanner() {
 /* -------------------------------------------------------------------------- */
 /*  Footer                                                                    */
 /* -------------------------------------------------------------------------- */
-
 function Footer() {
   return (
     <footer id="contact" className="bg-slate-950 text-slate-300">
@@ -921,20 +980,24 @@ function Footer() {
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600">
                 <GraduationCap className="h-5 w-5 text-white" />
               </span>
+
               <span className="text-lg font-bold text-white">
                 Stack X <span className="text-blue-500">Academy</span>
               </span>
             </a>
+
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
               Practical, expert-led courses that help you build real skills
               and grow your career with confidence.
             </p>
-          
           </div>
 
           {/* Quick links */}
           <div>
-            <h4 className="text-sm font-semibold text-white">Quick Links</h4>
+            <h4 className="text-sm font-semibold text-white">
+              Quick Links
+            </h4>
+
             <ul className="mt-4 space-y-3 text-sm">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
@@ -951,12 +1014,15 @@ function Footer() {
 
           {/* Courses */}
           <div>
-            <h4 className="text-sm font-semibold text-white">Popular Courses</h4>
+            <h4 className="text-sm font-semibold text-white">
+              Popular Courses
+            </h4>
+
             <ul className="mt-4 space-y-3 text-sm">
               {COURSES.slice(0, 4).map((course) => (
                 <li key={course.id}>
                   <a
-                    href="#courses"
+                    href={course.link}
                     className="text-slate-400 transition-colors hover:text-blue-400"
                   >
                     {course.title}
@@ -968,20 +1034,69 @@ function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-semibold text-white">Contact Us</h4>
-            <ul className="mt-4 space-y-3 text-sm text-slate-400">
+            <h4 className="text-sm font-semibold text-white">
+              Contact Us
+            </h4>
+
+            <ul className="mt-4 space-y-4 text-sm text-slate-400">
+
+              {/* Email */}
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                stackxacademy@gmail.com
+
+                <a
+                  href="mailto:stackxacademy@gmail.com"
+                  className="transition-colors hover:text-blue-400"
+                >
+                  stackxacademy@gmail.com
+                </a>
               </li>
+
+              {/* Phone */}
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                +91 6261885954
+
+                <a
+                  href="tel:+916261885954"
+                  className="transition-colors hover:text-blue-400"
+                >
+                  +91 6261885954
+                </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                
-              </li>
+
+              {/* Google Maps */}
+           {/* Google Maps */}
+<li className="flex items-start gap-3">
+  <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
+
+  <a
+    href="https://maps.app.goo.gl/Z6jomY2U65ZLXbvA7?g_st=ac"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="View Stack X Academy on Google Maps"
+    className="group block"
+  >
+    <div className="h-[120px] w-[220px] overflow-hidden rounded-lg border border-white/10 bg-slate-800 transition-all duration-300 group-hover:scale-105 group-hover:border-blue-500/60">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.703496134586!2d81.28172167504896!3d21.203934480489526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a293df7934c8903%3A0x7a6be60b254f27d9!2sPrem%20Nagar!5e0!3m2!1sen!2sin!4v1788787271120!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{
+          border: 0,
+          pointerEvents: "none",
+        }}
+        loading="lazy"
+        title="Stack X Academy Location"
+      />
+    </div>
+
+    <span className="mt-1.5 block text-xs text-blue-400 transition-colors group-hover:text-blue-300">
+      View on Google Maps →
+    </span>
+  </a>
+</li>
+
+              {/* Support */}
               <li className="flex items-start gap-3">
                 <Headphones className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
                 Support available 24/7
@@ -990,12 +1105,18 @@ function Footer() {
           </div>
         </div>
 
+        {/* Bottom */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Learnify. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Stack X Academy. All rights
+            reserved.
+          </p>
+
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-blue-400">
               Privacy Policy
             </a>
+
             <a href="#" className="hover:text-blue-400">
               Terms of Service
             </a>
