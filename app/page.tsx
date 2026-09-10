@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FaArrowRight, FaPlay, FaStar, FaUsers, FaChartBar, } from "react-icons/fa";
 import { Inter } from "next/font/google";
 import {
   Menu,
@@ -206,7 +208,7 @@ const TESTIMONIALS = [
 /*  Page                                                                      */
 /* -------------------------------------------------------------------------- */
 
-export default function Home() {
+ export default function Home() {
   return (
     <div className={`${inter.variable} font-sans bg-white text-slate-900 antialiased`}>
       <Navbar />
@@ -364,139 +366,267 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-gradient-to-b from-blue-50/70 via-white to-white"
+      className="relative min-h-screen overflow-hidden bg-slate-900"
     >
-      {/* Decorative background shapes */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-blue-100/60 blur-3xl" />
+      {/* ===== BACKGROUND IMAGE WITH OVERLAY ===== */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/courses/cloud-computing.jpg"
+          alt="Students learning together"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/50 to-slate-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent" />
+      </div>
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 py-20 sm:py-24 lg:grid-cols-2 lg:px-8 lg:py-28">
-        {/* Left content */}
-        <div className="animate-fade-up">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold text-blue-700">
-            <Sparkles className="h-3.5 w-3.5" />
-            Learn. Build. Grow.
-          </span>
+      {/* ===== FLOATING DECORATIVE SHAPES ===== */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl"
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -bottom-32 right-10 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl"
+          animate={{ x: [0, -40, 0], y: [0, 30, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute left-1/3 top-1/3 h-60 w-60 rounded-full bg-purple-500/10 blur-3xl"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem] lg:leading-[1.1]">
-            Build Skills That{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">
-              Shape Your Future
-            </span>
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-            Learn practical skills from expert instructors through carefully
-            designed courses that help you grow your knowledge, career, and
-            confidence.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="#courses"
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/30"
+      {/* ===== MAIN CONTENT ===== */}
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
+        <div className="grid w-full grid-cols-1 items-center gap-16 lg:grid-cols-2">
+          {/* LEFT – TEXT & CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-6"
+          >
+            <motion.span
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/20 px-4 py-1.5 text-xs font-semibold text-blue-300 backdrop-blur-sm"
             >
-              Explore Courses
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#about"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400" />
+              </span>
+              Learn. Build. Grow.
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-[3.4rem] lg:leading-[1.1]"
             >
-              Learn More
-            </a>
-          </div>
+              Build Skills That{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                Shape Your Future
+              </span>
+            </motion.h1>
 
-          <div className="mt-10 flex items-center gap-6 text-sm text-slate-500">
-            <div className="flex -space-x-3">
-              {["PN", "AD", "MI", "SV"].map((initials) => (
-                <span
-                  key={initials}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-[11px] font-semibold text-blue-700"
-                >
-                  {initials}
-                </span>
-              ))}
-            </div>
-            <p>
-              Joined by <span className="font-semibold text-slate-800">10,000+</span>{" "}
-              learners worldwide
-            </p>
-          </div>
-        </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="max-w-xl text-lg leading-relaxed text-slate-300"
+            >
+              Learn practical skills from expert instructors through carefully
+              designed courses that help you grow your knowledge, career, and
+              confidence.
+            </motion.p>
 
-        {/* Right visual */}
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-md">
-            {/* Main dashboard card */}
-            <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-2xl shadow-blue-900/10">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-medium text-slate-400">Your Progress</p>
-                  <p className="mt-1 text-lg font-bold text-slate-900">
-                    UI/UX Design Path
-                  </p>
-                </div>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600">
-                  <BarChart3 className="h-5 w-5 text-white" />
-                </span>
-              </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="flex flex-wrap items-center gap-4 pt-2"
+            >
+              <a
+                href="#courses"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/40"
+              >
+                Explore Courses
+                <FaArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#about"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-1 hover:bg-white/20"
+              >
+                <FaPlay className="h-3 w-3" />
+                Watch Video
+              </a>
+            </motion.div>
 
-              <div className="mt-6 space-y-4">
-                {[
-                  { label: "Design Fundamentals", pct: 100 },
-                  { label: "Wireframing", pct: 80 },
-                  { label: "Prototyping", pct: 45 },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-slate-600">
-                      <span>{item.label}</span>
-                      <span>{item.pct}%</span>
-                    </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
-                        style={{ width: `${item.pct}%` }}
-                      />
-                    </div>
-                  </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="flex items-center gap-6 pt-4 text-sm text-slate-400"
+            >
+              <div className="flex -space-x-3">
+                {["PN", "AD", "MI", "SV"].map((initials, i) => (
+                  <motion.span
+                    key={initials}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 + i * 0.1 }}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-slate-800 bg-slate-700 text-[11px] font-semibold text-white"
+                  >
+                    {initials}
+                  </motion.span>
                 ))}
               </div>
+              <p>
+                Joined by <span className="font-semibold text-white">10,000+</span>{" "}
+                learners worldwide
+              </p>
+            </motion.div>
+          </motion.div>
 
-              <div className="mt-6 flex items-center justify-between rounded-2xl bg-blue-50 px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-blue-600" />
-                  <span className="text-xs font-semibold text-blue-700">
-                    On track to finish this week
+          {/* RIGHT – VISUAL CARD */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative flex justify-center lg:justify-end"
+          >
+            <div className="relative w-full max-w-md">
+              {/* Main card */}
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl shadow-2xl shadow-blue-900/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-medium text-slate-400">
+                      Your Progress
+                    </p>
+                    <p className="mt-1 text-lg font-bold text-white">
+                      UI/UX Design Path
+                    </p>
+                  </div>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-emerald-400">
+                    <FaChartBar className="h-5 w-5 text-white" />
                   </span>
                 </div>
-              </div>
-            </div>
 
-            {/* Floating small card - students */}
-            <div className="absolute -left-8 top-10 hidden animate-float rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-xl shadow-blue-900/10 sm:flex sm:items-center sm:gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100">
-                <Users className="h-4 w-4 text-blue-600" />
-              </span>
-              <div>
-                <p className="text-sm font-bold leading-none text-slate-900">10,000+</p>
-                <p className="mt-1 text-[11px] text-slate-500">Active Students</p>
-              </div>
-            </div>
+                <div className="mt-6 space-y-4">
+                  {[
+                    { label: "Design Fundamentals", pct: 100 },
+                    { label: "Wireframing", pct: 80 },
+                    { label: "Prototyping", pct: 45 },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                    >
+                      <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-slate-300">
+                        <span>{item.label}</span>
+                        <span>{item.pct}%</span>
+                      </div>
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-700">
+                        <motion.div
+                          className="h-full rounded-full bg-gradient-to-r from-blue-400 to-emerald-400"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${item.pct}%` }}
+                          transition={{ duration: 1.2, delay: 0.7 + i * 0.1 }}
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
 
-            {/* Floating small card - rating */}
-            <div className="absolute -bottom-6 -right-4 hidden animate-float-delayed rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-xl shadow-blue-900/10 sm:flex sm:items-center sm:gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100">
-                <Star className="h-4 w-4 fill-amber-500 text-amber-500" />
-              </span>
-              <div>
-                <p className="text-sm font-bold leading-none text-slate-900">4.9/5</p>
-                <p className="mt-1 text-[11px] text-slate-500">Average Rating</p>
+                <div className="mt-6 flex items-center justify-between rounded-2xl bg-blue-500/20 px-4 py-3 backdrop-blur-sm">
+                  <div className="flex items-center gap-2">
+                    {/* <FaTrendingUp className="h-4 w-4 text-blue-400" /> */}
+                    <span className="text-xs font-semibold text-blue-300">
+                      On track to finish this week
+                    </span>
+                  </div>
+                </div>
               </div>
+
+              {/* Floating cards */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="absolute -left-6 top-10 hidden animate-float rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-xl shadow-xl shadow-blue-900/20 sm:flex sm:items-center sm:gap-3"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-500/30">
+                  <FaUsers className="h-4 w-4 text-blue-300" />
+                </span>
+                <div>
+                  <p className="text-sm font-bold leading-none text-white">
+                    10,000+
+                  </p>
+                  <p className="mt-1 text-[11px] text-slate-400">
+                    Active Students
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0 }}
+                className="absolute -bottom-6 -right-4 hidden animate-float-delayed rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-xl shadow-xl shadow-blue-900/20 sm:flex sm:items-center sm:gap-3"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/30">
+                  <FaStar className="h-4 w-4 fill-amber-400 text-amber-400" />
+                </span>
+                <div>
+                  <p className="text-sm font-bold leading-none text-white">
+                    4.9/5
+                  </p>
+                  <p className="mt-1 text-[11px] text-slate-400">
+                    Average Rating
+                  </p>
+                </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* ===== CUSTOM ANIMATIONS ===== */}
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        @keyframes float-delayed {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+          animation: float-delayed 5s ease-in-out infinite;
+          animation-delay: 0.5s;
+        }
+      `}</style>
     </section>
   );
 }
