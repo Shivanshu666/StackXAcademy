@@ -49,28 +49,47 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 /* -------------------------------------------------------------------------- */
 /*  Animated Counter                                                          */
 /* -------------------------------------------------------------------------- */
-function Counter({ end, suffix = "", duration = 2000 }) {
+interface CounterProps {
+  end: number;
+  suffix?: string;
+  duration?: number;
+}
+
+function Counter({
+  end,
+  suffix = "",
+  duration = 2000,
+}: CounterProps) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement | null>(null);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) setStarted(true);
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+        }
       },
       { threshold: 0.3 }
     );
-    if (ref.current) observer.observe(ref.current);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
     return () => observer.disconnect();
   }, [started]);
 
   useEffect(() => {
     if (!started) return;
+
     let start = 0;
     const step = end / (duration / 16);
+
     const timer = setInterval(() => {
       start += step;
+
       if (start >= end) {
         setCount(end);
         clearInterval(timer);
@@ -78,6 +97,7 @@ function Counter({ end, suffix = "", duration = 2000 }) {
         setCount(Math.floor(start));
       }
     }, 16);
+
     return () => clearInterval(timer);
   }, [started, end, duration]);
 
