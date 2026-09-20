@@ -933,7 +933,7 @@ const recruiters: Recruiters[] = [
   { name: "Quess Work",          logo: "/sponsorship/Quess Work.jpg" },
   { name: "Rungta University",   logo: "/sponsorship/Rungta.jpg" },
   { name: "Team Lease",          logo: "/sponsorship/Team Lease.jpg" },
-  { name: "VPC IT Care",         logo: "/sponsorship/VPC it Care.jpg" },
+  { name: "VPC IT Care",         logo: "/sponsorship/VPC it CAre.jpg" },
   { name: "YES Bank",            logo: "/sponsorship/Yes Bank.jpg" },
 ];
   const placed = [
