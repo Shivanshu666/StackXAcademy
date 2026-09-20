@@ -537,7 +537,7 @@ function Hero() {
                 ))}
               </div>
               <p>
-                Joined by <span className="font-semibold text-white">10,000+</span>{" "}
+                Joined by <span className="font-semibold text-white">50+</span>{" "}
                 learners worldwide
               </p>
             </motion.div>
@@ -911,19 +911,31 @@ function AboutSection() {
 
 function PlacementSection() {
   const stats = [
-    { icon: FaTrophy, label: "Highest Package", value: 18, suffix: " LPA", color: "from-blue-500 to-cyan-400" },
-    { icon: FaChartLine, label: "Average Package", value: 6, suffix: " LPA", color: "from-blue-600 to-blue-400" },
+    { icon: FaTrophy, label: "Highest Package", value: 2.8, suffix: " LPA", color: "from-blue-500 to-cyan-400" },
+    { icon: FaChartLine, label: "Average Package", value: 2.2, suffix: " LPA", color: "from-blue-600 to-blue-400" },
     // { icon: FaUsers, label: "Students Placed", value: 120, suffix: "+", color: "from-sky-500 to-white" },
-    { icon: FaBuilding, label: "Hiring Partners", value: 45, suffix: "+", color: "from-blue-700 to-sky-400" },
+    { icon: FaBuilding, label: "Hiring Partners", value: 14, suffix: "+", color: "from-blue-700 to-sky-400" },
   ];
+interface Recruiters {
+  name: string;
+  logo: string;
+}
 
-  const recruiters = [
-    "TCS", "Infosys", "Wipro", "Accenture", "Cognizant",
-    "Capgemini", "HCL", "Tech Mahindra", "LTIMindtree", "Mphasis",
-    "Zoho", "Freshworks", "Paytm", "PhonePe", "Razorpay",
-    "Persistent", "KPIT", "Birlasoft", "Hexaware", "Virtusa",
-  ];
-
+const recruiters: Recruiters[] = [
+  { name: "Chroma",              logo: "/sponsorship/Chroma.jpg" },
+  { name: "Clarion IT Services", logo: "/sponsorship/Clarion IT.jpg" },
+  { name: "CMS",                 logo: "/sponsorship/CMS.jpg" },
+  { name: "Globosoft",           logo: "/sponsorship/globosoft.jpg" },
+  { name: "HDFC Bank",           logo: "/sponsorship/HDFC Bank.jpg" },
+  { name: "JK Lakshmi",          logo: "/sponsorship/JKLakshmi.jpg" },
+  { name: "JWS",                 logo: "/sponsorship/JWS.jpg" },
+  { name: "Kalinga University",  logo: "/sponsorship/Kalinga.jpg" },
+  { name: "Quess Work",          logo: "/sponsorship/Quess Work.jpg" },
+  { name: "Rungta University",   logo: "/sponsorship/Rungta.jpg" },
+  { name: "Team Lease",          logo: "/sponsorship/Team Lease.jpg" },
+  { name: "VPC IT Care",         logo: "/sponsorship/VPC it Care.jpg" },
+  { name: "YES Bank",            logo: "/sponsorship/Yes Bank.jpg" },
+];
   const placed = [
     { name: "Rahul Mehta", role: "Java Developer", company: "TCS", pkg: "7.5 LPA", batch: "Batch 1", initials: "RM",image: "/students/student1.png"  },
     { name: "Sneha Kulkarni", role: "Frontend Developer", company: "Zoho", pkg: "9 LPA", batch: "Batch 1", initials: "SK",image: "/students/student2.png"  },
@@ -974,10 +986,7 @@ function PlacementSection() {
             students who trusted us from day one.
           </p>
 
-          <div className="mt-6 inline-flex items-center gap-2 text-xs text-slate-500">
-            <FaCalendarAlt className="h-3 w-3" />
-            Started in 2024 · Just getting started
-          </div>
+       
         </motion.div>
 
 
@@ -1034,20 +1043,26 @@ function PlacementSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {recruiters.map((company, i) => (
-              <motion.div
-                key={company}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.03 }}
-                className="group flex h-20 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-sm font-semibold text-slate-300 backdrop-blur-sm transition hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-white"
-              >
-                {company}
-              </motion.div>
-            ))}
-          </div>
+<div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-px">
+  {recruiters.map((company: Recruiters, i: number) => (
+    <motion.div
+      key={company.name}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.04, duration: 0.5 }}
+      className="group relative flex aspect-square w-[calc(50%-1px)] items-center justify-center overflow-hidden bg-[#050914] p-4 sm:w-[calc(33.333%-1px)] lg:w-[calc(20%-1px)]"
+    >
+      <img
+        src={company.logo}
+        alt={company.name}
+        className="h-full w-full object-contain opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+      />
+    </motion.div>
+  ))}
+</div>
+
+
         </motion.div>
 
         <motion.div
