@@ -397,7 +397,7 @@ function Navbar() {
             </a>
           ))}
           <a
-            href="https://wa.me/916261885954"
+            href="https://wa.me/919630372206"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
