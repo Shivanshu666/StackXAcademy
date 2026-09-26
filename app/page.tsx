@@ -357,7 +357,7 @@ function Navbar() {
         </ul>
 
         <a
-          href="https://wa.me/916261885954"
+          href="https://wa.me/919630372206"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Stack X Academy on WhatsApp"
@@ -1588,7 +1588,7 @@ function Footer() {
                   href="tel:+916261885954"
                   className="transition-colors hover:text-blue-400"
                 >
-                  +91 6261885954
+                  +91 9630372206
                 </a>
               </li>
               <li className="flex items-start gap-3">
